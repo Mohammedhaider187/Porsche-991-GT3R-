@@ -1,0 +1,542 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Poppins:wght@100;300;400;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior:smooth;
+    scroll-padding-top: 75px;
+}
+
+::-webkit-scrollbar{
+    width: 11px;
+  }
+  
+  ::-webkit-scrollbar-track{
+    background: transparent;
+  }
+  
+  ::-webkit-scrollbar-thumb{
+    background: linear-gradient(90.21deg, rgba(58, 2, 25, 0.705) -5.91%, rgba(179, 129, 144, 0.521) 111.58%);
+  }
+
+body {
+    font-weight: 400;
+    overflow-x: hidden;
+    position: relative;
+    background: linear-gradient(to bottom, #19140e, #0f0a06, #000000, #121212);
+
+    color: #fff !important;
+    font-family: "Orbitron", sans-serif !important;
+    font-weight: 400
+  }
+
+.navbar {
+    padding: 25px 25px;
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    top: 0;
+    max-height: 100px;
+    z-index: 9999;
+    transition: 0.32 ease-in-out;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+    transition: 0.4s ease-in-out;
+}
+
+.navbar.scrolled {
+    background: rgba(0, 0, 0, 0.8); /* Adjust darkness as needed */
+    transition: 0.4s ease-in-out;
+}
+
+.nav-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+    margin-left: 15px;
+
+    h1 {
+        font-size: 2.2rem;
+        text-transform: uppercase;
+    }
+}
+
+.nav-link {
+    display: flex;
+    gap: 25px;
+    font-size: 20px;
+    justify-items: center;
+    align-items: center;
+    padding-right: 50px;
+
+
+    a{
+        padding: 5px 5px;
+        border: 2px solid transparent;
+        border-radius: 15px;
+        transition: all 0.32s ease-in-out; 
+        text-decoration: none;
+        color: white;
+    }
+}
+
+.nav-link a:hover {
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    letter-spacing: 3px;
+    transition: all 0.32s ease-in-out;
+    cursor: pointer;
+}
+
+
+
+.banner {
+    padding: 260px 0 100px 0;
+    width: 100%;
+    height: 100vh;
+    background-image: url('./public/car.jpg');
+    background-position: center center; /* Center the background */
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -1;
+}
+
+.banner .tagline {
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 8px 10px;
+  background: linear-gradient(90.21deg, rgba(58, 2, 25, 0.705) -5.91%, rgba(179, 129, 144, 0.521) 111.58%);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  font-size: clamp(16px, 4vw, 20px); /* Adjusts font size */
+  margin-bottom: 16px; 
+  margin-left: clamp(30px, 50vw, 750px); /* Adjusts horizontal position */
+  margin-top: 200px;
+  display: inline-block;
+  transition: 0.3s all ease-in;
+}
+
+.banner .tagline:hover {
+    backdrop-filter: blur(10px);
+    transition: 0.3s all ease-in;
+}
+
+
+.car, .car1 {
+    display: flex;
+    padding: 30px 30px;
+    align-items: start;
+    margin-top: 50px;
+    justify-content: flex-start;
+    gap: 15%;
+    line-height: 35px;
+    letter-spacing: 1px;
+}
+
+.car h2, .car1 h2 {
+    max-width: 20%;
+    font-size: 15px;
+    color: gray;
+}
+
+.car p, .car1 p{
+    max-width: 50%;
+    font-size: 20px;
+}
+
+.frame {
+    display: block;
+    margin: 0 auto;
+}
+
+.specs {
+    display: flex;
+    flex-direction: column;
+    padding: 30px 30px;
+    margin-top: 100px;
+    align-items: start;
+    justify-content: flex-start;
+    gap: 30px;
+    line-height: 10px;
+    letter-spacing: 1px;
+}
+
+.specs h2 {
+    font-size: 15px;
+    color: gray;
+}
+
+.specs p {
+    font-size: 20px;
+}
+
+/* Make sure the carousel container stays fixed in place */
+.carousel-container {
+    display: flex;
+    justify-content: center;  /* Center horizontally */
+    align-items: center;      /* Center vertically */
+    position: relative;       /* Avoiding displacement by other content */
+    width: 100%;
+    height: 300px;            /* Fixed height for the carousel */
+}
+
+/* Updated slider size */
+.carousel-container .slider {
+    width: 300px;             /* Slider width */
+    height: 150px;            /* Slider height */
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+    animation: autoRun 20s linear infinite;
+    z-index: 2;
+}
+
+/* Adjusting the 3D effect */
+@keyframes autoRun {
+    from {
+        transform: perspective(1000px) rotateX(-16deg) rotateY(0deg);
+    }
+    to {
+        transform: perspective(1000px) rotateX(-16deg) rotateY(360deg);
+    }
+}
+
+/* Slider items and image sizes */
+.carousel-container .slider .item {
+    position: absolute;
+    inset: 0 0 0 0;
+    transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+        translateZ(300px);  /* Smaller translation */
+}
+
+.carousel-container .slider .item img {
+    width: 100%;             /* Image fills the slider size */
+    height: 100%;
+    object-fit: cover;       /* Ensures the image covers the area */
+}
+
+.technical-specs {
+    margin-top: 150px;
+    padding: 50px 50px;
+}
+
+.technical-specs .data {
+    display: flex;
+    padding: 0 50px;
+    margin-top: 30px;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #fff;
+    border-radius: 5px;
+    line-height: 50px;
+    transition: 0.3s all ease-in
+}
+
+.technical-specs .data:hover {
+    background: linear-gradient(90.21deg, rgba(58, 2, 25, 0.705) -5.91%, rgba(179, 129, 144, 0.521) 111.58%);
+    transition: 0.3s all ease-in;
+}
+
+.technical-specs .data h2{
+    font-size: 20px;
+    color: gray;
+}
+.technical-specs .data p{
+    font-size: 20px;
+    color: white;
+}
+
+.track {
+    padding: 30px 30px;
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.track h2 {
+    margin: 40px 10px;
+}
+
+.track img {
+    transition: 0.3s all ease-in;
+}
+.track img:hover {
+    transform: scale(1.1);
+    filter: brightness(1.5);
+    transition: 0.3s all ease-in;
+    cursor: grab;
+}
+
+.swiper-container {
+    width: 100%;
+    height: 150px; 
+    margin-bottom: 200px;
+}
+
+.sponsor {
+    margin-top: -300px;
+    margin-bottom: 300px;
+}
+
+.sponsors h2 {
+    padding-bottom: 200px;
+}
+
+.sponsors p {
+    color: gray;
+    padding: 100px 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+}
+
+.swiper-wrapper {
+    display: flex;
+    transition-timing-function: ease;
+}
+
+.swiper-slide img {
+    width: 100%; 
+    height: 100%;
+    object-fit: contain; 
+}
+
+.biography {
+    padding: 87px 30px;
+    margin-top: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    h2{
+        margin: 40px 10px;
+    }
+}
+
+.biography-data {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.biography-text{
+    padding-top: 20px;
+    max-width: 50%;
+    font-size: 20px;
+    gap: 15%;
+    line-height: 35px;
+    letter-spacing: 1px;
+    color: gray;
+    padding: 100px 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+}
+
+.social-icon{
+    display: inline-block;
+    margin-left: 14px;
+    margin-top: 30px;
+  }
+  
+  .social-icon a{
+    width: 42px;
+    height: 42px;
+    background: rgba(217, 217, 217,0.1);
+    display: inline-flex;
+    border-radius: 50%;
+    margin-right: 6px;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    border: rgba(255, 255, 255,0.5)
+  }
+  
+  .social-icon a::before{
+    content: "";
+    width: 42px;
+    height: 42px;
+    position: absolute;
+    background-color: #ffffffff;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: 0.3s ease-in-out
+  }
+  
+  .social-icon a:hover::before{
+    transform: scale(1.1);
+  }
+  
+  .social-icon a img{
+    width: 70%;
+    z-index: 1;
+    transition: 0.3s ease-in-out
+  }
+  
+  .social-icon a:hover img{
+    filter: brightness(0) saturate(100%) invert(0%) sepia(7%) saturate(98%) hue-rotate(346deg) brightness(95%) contrast(86%);
+    cursor: pointer;
+}
+  
+
+footer {
+    background: #121212;
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Extra small devices (phones, 600px and below) */
+@media only screen and (max-width: 600px) {
+    .navbar {
+        padding: 15px;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-title {
+        margin-left: 0;
+        gap: 15px;
+    }
+
+    .nav-link {
+        font-size: 16px;
+        padding-right: 0;
+        gap: 15px;
+    }
+
+    .banner {
+        padding: 160px 0 60px 0;
+        background-size: cover;
+    }
+
+    .banner .tagline {
+        font-size: 16px;
+        margin-left: 0;
+        margin-top: 120px;
+        margin-bottom: 10px;
+    }
+
+    .car {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .specs {
+        gap: 15px;
+        margin-top: 50px;
+    }
+
+    .track {
+        gap: 20px;
+    }
+
+    .biography-data {
+        flex-direction: column;
+    }
+
+    .biography-text {
+        max-width: 80%;
+        font-size: 18px;
+    }
+
+    .social-icon a {
+        width: 36px;
+        height: 36px;
+    }
+
+    footer {
+        font-size: 10px;
+    }
+
+    .carousel-container {
+        height: 250px;
+    }
+
+    .carousel-container .slider {
+        width: 250px;
+        height: 120px;
+    }
+}
+
+
+/* Small devices (tablets, 600px to 768px) */
+@media only screen and (max-width: 768px) {
+    .navbar {
+        padding: 20px;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-title {
+        gap: 20px;
+        margin-left: 0;
+    }
+
+    .nav-link {
+        font-size: 18px;
+        gap: 20px;
+    }
+
+    .banner {
+        padding: 200px 0 80px 0;
+    }
+
+    .banner .tagline {
+        font-size: 18px;
+        margin-left: 0;
+        margin-top: 160px;
+    }
+
+    .car {
+        flex-direction: column;
+        align-items: center;
+        gap: 10%;
+    }
+
+    .specs {
+        gap: 25px;
+        margin-top: 70px;
+    }
+
+    .track {
+        gap: 25px;
+    }
+
+    .biography-text {
+        max-width: 70%;
+        font-size: 20px;
+    }
+
+    .carousel-container {
+        height: 280px;
+    }
+
+    .carousel-container .slider {
+        width: 280px;
+        height: 130px;
+    }
+}
+
+
+
